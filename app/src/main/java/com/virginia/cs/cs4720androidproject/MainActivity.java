@@ -1,18 +1,19 @@
 package com.virginia.cs.cs4720androidproject;
 
+import android.app.Activity;
 import android.content.Context;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity implements LocationListener{
 
-    LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+    LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +43,37 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
+
     public void getGPSCoordinates(View view) {
         EditText gpsEditText = (EditText)findViewById(R.id.gps_editText);
-        Location location= locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location location = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
         String gpsCoordinates = "";
+        if (location != null) {
+            gpsCoordinates = "Latitude: " + location.getLatitude() + " Longitude: "
+                    + location.getLongitude();
+        }
+        else{
+            locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 1000, 0, this);
+        }
         gpsEditText.setText(gpsCoordinates);
     }
 }

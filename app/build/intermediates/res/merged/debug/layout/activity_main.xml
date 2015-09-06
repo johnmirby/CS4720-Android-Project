@@ -11,7 +11,8 @@
         android:id="@+id/gps_button"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/gps_button" />
+        android:text="@string/gps_button"
+        android:onClick="getGPSCoordinates"/>
 
     <EditText
         android:layout_width="wrap_content"
