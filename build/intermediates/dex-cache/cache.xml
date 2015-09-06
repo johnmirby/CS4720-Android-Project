@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/john/AndroidStudioProjects/CS4720AndroidProject/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
+        <dex dex="/home/john/AndroidStudioProjects/CS4720AndroidProject/app/build/intermediates/pre-dexed/debug/classes-14459b40d5c1b43193d4ab194826d82dd0c202b2.jar" />
+    </item>
+    <item
+        jar="/home/john/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.0/support-annotations-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
+        <dex dex="/home/john/AndroidStudioProjects/CS4720AndroidProject/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.0-818925239d87a92e3fe2825c5a24edc54f5df42d.jar" />
+    </item>
+    <item
+        jar="/home/john/AndroidStudioProjects/CS4720AndroidProject/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="4fcf0b1879f8caf497c073e1432d398e9e2988c1">
+        <dex dex="/home/john/AndroidStudioProjects/CS4720AndroidProject/app/build/intermediates/pre-dexed/debug/classes-db9cc055f4989d7908027329cfb9aac409d984c7.jar" />
+    </item>
+    <item
+        jar="/home/john/AndroidStudioProjects/CS4720AndroidProject/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/libs/internal_impl-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
+        <dex dex="/home/john/AndroidStudioProjects/CS4720AndroidProject/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.0-a9b277d87e4f6ca3bb22fd39af4edd6ef7327041.jar" />
+    </item>
+
+</items>
