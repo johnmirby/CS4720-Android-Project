@@ -47,6 +47,7 @@ public class MainActivity extends Activity implements LocationListener{
     public void onLocationChanged(Location location) {
 
     }
+
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
 
