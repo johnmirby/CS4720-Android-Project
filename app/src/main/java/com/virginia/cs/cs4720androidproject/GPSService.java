@@ -50,7 +50,7 @@ public class GPSService extends Service {
 
             }
         };
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
         return super.onStartCommand(intent, flags, startId);
     }
 
