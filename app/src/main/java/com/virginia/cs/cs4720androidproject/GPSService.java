@@ -65,7 +65,8 @@ public class GPSService extends Service {
     }
 
     private void displayCurrentLocation(Location location) {
-        Toast.makeText(this, "Current Location: " + location.toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Current Location: Longitude - " + location.getLongitude()
+                + " Latitude - " + location.getLatitude(), Toast.LENGTH_LONG).show();
     }
 
     private void _shutdownService() {

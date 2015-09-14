@@ -7,6 +7,8 @@
     <string name="activity2_button">Go to activity 2</string>
     <string name="add_item_button">Add item</string>
     <string name="add_item_text">Enter item name</string>
+    <string name="ms1_about">Click on the Activity 2 button to go to a list view where you can enter list items.
+        Click on the GPS button to start a GPS service.</string>
 
 
 </resources>
