@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.virginia.cs.cs4720androidproject" >
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COURSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -25,6 +23,14 @@
             android:enabled="true"
             android:exported="true" >
         </service>
+
+        <activity
+            android:name=".Activity2"
+            android:label="@string/title_activity_2" >
+        </activity>
     </application>
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 </manifest>

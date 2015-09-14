@@ -68,4 +68,9 @@ public class MainActivity extends Activity implements LocationListener{
         Intent intent = new Intent(this, GPSService.class);
         startService(intent);
     }
+
+    public void startActivity2(View view){
+        Intent intent = new Intent(this, Activity2.class);
+        startActivity(intent);
+    }
 }

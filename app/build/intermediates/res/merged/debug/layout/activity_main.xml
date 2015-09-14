@@ -3,7 +3,8 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
 
     <Button
         android:layout_width="wrap_content"
@@ -14,5 +15,15 @@
         android:text="@string/gps_button"
         android:onClick="getGPSCoordinates"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/activity2_button"
+        android:id="@+id/button"
+        android:layout_above="@+id/gps_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="114dp"
+        android:onClick="startActivity2" />
+
 </RelativeLayout>
-<!-- From: file:/home/john/AndroidStudioProjects/CS4720AndroidProject/app/src/main/res/layout/activity_main.xml -->
+<!-- From: file:/C:/Users/student/AndroidStudioProjects/CS4720-Android-Project/app/src/main/res/layout/activity_main.xml -->
