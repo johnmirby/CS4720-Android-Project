@@ -2,6 +2,7 @@ package com.virginia.cs.cs4720androidproject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -64,17 +65,7 @@ public class MainActivity extends Activity implements LocationListener{
     }
 
     public void getGPSCoordinates(View view) {
-        EditText gpsEditText = (EditText)findViewById(R.id.gps_editText);
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Location location = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
-        String gpsCoordinates = "";
-        if (location != null) {
-            gpsCoordinates = "Latitude: " + location.getLatitude() + " Longitude: "
-                    + location.getLongitude();
-        }
-        else{
-            locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 1000, 0, this);
-        }
-        gpsEditText.setText(gpsCoordinates);
+        Intent intent = new Intent(this, GPSService.class);
+        startService(intent);
     }
 }
