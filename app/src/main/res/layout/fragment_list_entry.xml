@@ -1,17 +1,20 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.virginia.cs.cs4720androidproject.ListEntryFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    tools:context="com.virginia.cs.cs4720androidproject.ListEntryFragment"
+    android:id="@+id/fragment_layout">
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fragmentEditText"
-        android:layout_gravity="center_horizontal|top"
-        android:text="s" />
+        android:id="@+id/fragmentEditText1"
+        android:text=""
+        android:layout_weight="1" />
 
-</FrameLayout>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragmentEditText2"
+        android:layout_weight="1" />
+
+</LinearLayout>

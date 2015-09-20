@@ -57,7 +57,7 @@ public class ListEntryFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_entry, container);
-        getDialog().setTitle("Hello");
+        getDialog().setTitle("Enter Card Information");
 
         return view;
     }
