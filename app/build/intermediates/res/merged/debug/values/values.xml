@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- From: file:/home/john/AndroidStudioProjects/CS4720AndroidProject/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string-array name="condition_array">
+        <item>NM</item>
+        <item>LP</item>
+        <item>MP</item>
+        <item>HP</item>
+        <item>D</item>
+    </string-array>
     <!-- From: file:/home/john/AndroidStudioProjects/CS4720AndroidProject/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values/values.xml -->
     <eat-comment/>
     <attr format="reference" name="drawerArrowStyle"/>
@@ -215,8 +224,10 @@
     <string name="add_item_button">Add Card</string>
     <string name="add_item_text">Enter item name</string>
     <string name="app_name">CS4720 Android Project</string>
+    <string name="fragmentEditText1_label">Expansion</string>
+    <string name="fragmentEditText2_label">Language</string>
+    <string name="fragmentLabel3">Condition</string>
     <string name="gps_button">Start the GPS Service</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ms1_about">Click on the Activity 2 button to go to a list view where you can enter list items.
         Click on the GPS button to start a GPS service.</string>
     <!-- From: file:/home/john/AndroidStudioProjects/CS4720AndroidProject/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values/values.xml -->

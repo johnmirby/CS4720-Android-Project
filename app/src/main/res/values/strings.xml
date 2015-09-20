@@ -7,11 +7,18 @@
     <string name="activity2_button">View Card List</string>
     <string name="add_item_button">Add Card</string>
     <string name="add_item_text">Enter item name</string>
+    <string name="fragmentEditText1_label">Expansion</string>
+    <string name="fragmentEditText2_label">Language</string>
     <string name="ms1_about">Click on the Activity 2 button to go to a list view where you can enter list items.
         Click on the GPS button to start a GPS service.</string>
+    <string name="fragmentLabel3">Condition</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string-array name="condition_array">
+        <item>NM</item>
+        <item>LP</item>
+        <item>MP</item>
+        <item>HP</item>
+        <item>D</item>
+    </string-array>
 
 </resources>
