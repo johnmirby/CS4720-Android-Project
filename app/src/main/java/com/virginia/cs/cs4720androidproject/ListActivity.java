@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class Activity2 extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity {
 
     ArrayList<String> itemList = new ArrayList<String>();
     ArrayAdapter<String> adapter;

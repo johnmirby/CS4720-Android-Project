@@ -70,7 +70,7 @@ public class MainActivity extends Activity implements LocationListener{
     }
 
     public void startActivity2(View view){
-        Intent intent = new Intent(this, Activity2.class);
+        Intent intent = new Intent(this, ListActivity.class);
         startActivity(intent);
     }
 }

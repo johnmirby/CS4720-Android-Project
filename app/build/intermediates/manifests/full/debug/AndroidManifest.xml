@@ -33,8 +33,8 @@
         </service>
 
         <activity
-            android:name="com.virginia.cs.cs4720androidproject.Activity2"
-            android:label="@string/title_activity_2" >
+            android:name="com.virginia.cs.cs4720androidproject.ListActivity"
+            android:label="@string/title_list_activity" >
         </activity>
     </application>
 
