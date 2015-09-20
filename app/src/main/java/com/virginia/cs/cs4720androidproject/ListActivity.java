@@ -1,6 +1,7 @@
 package com.virginia.cs.cs4720androidproject;
 
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends FragmentActivity {
 
     ArrayList<String> itemList = new ArrayList<String>();
     ArrayAdapter<String> adapter;
@@ -33,7 +34,7 @@ public class ListActivity extends AppCompatActivity {
 
     private AdapterView.OnItemClickListener mMessageClickedHandler = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView parent, View v, int position, long id) {
-            Toast.makeText(getApplicationContext(), itemList.get(position), Toast.LENGTH_SHORT).show();
+            showListEntryDialog();
         }
     };
 
@@ -65,4 +66,11 @@ public class ListActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         Log.d("BuildingListView", itemList.toString());
     }
+
+    private void showListEntryDialog() {
+        FragmentManager fm = getSupportFragmentManager();
+        ListEntryFragment listEntryDialog = new ListEntryFragment();
+        listEntryDialog.show(fm, "fragment_list_entry");
+    }
+
 }
