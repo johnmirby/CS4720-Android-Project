@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 
 public class MainActivity extends Activity implements LocationListener{
+    public final static String EXTRA_MESSAGE = "com.virginia.cs.cs4720androidproject.MESSAGE";
 
     LocationManager locationManager;
 
@@ -69,8 +70,16 @@ public class MainActivity extends Activity implements LocationListener{
         startService(intent);
     }
 
-    public void startActivity2(View view){
+    public void startListActivity(View view){
         Intent intent = new Intent(this, ListActivity.class);
+        startActivity(intent);
+    }
+
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, ListActivity.class);
+        EditText editText = (EditText) findViewById(R.id.editText2);
+        String message = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
 }

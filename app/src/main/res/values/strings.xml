@@ -4,7 +4,9 @@
 
     <string name="action_settings">Settings</string>
     <string name="gps_button">Start the GPS Service</string>
-    <string name="activity2_button">View Card List</string>
+    <string name="list_activity_button">View Card List</string>
+    <string name="message_description">Enter Message:</string>
+    <string name="send_message_button">Send Message</string>
     <string name="add_item_button">Add Card</string>
     <string name="add_item_text">Enter item name</string>
     <string name="fragmentEditText1_label">Expansion</string>

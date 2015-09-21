@@ -1,5 +1,6 @@
 package com.virginia.cs.cs4720androidproject;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
@@ -11,13 +12,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class ListActivity extends FragmentActivity {
 
-    ArrayList<String> itemList = new ArrayList<String>();
+    ArrayList<String> itemList = new ArrayList<>();
     ArrayAdapter<String> adapter;
 
     @Override
@@ -26,10 +28,16 @@ public class ListActivity extends FragmentActivity {
         setContentView(R.layout.activity_2);
 
         ListView listView = (ListView)findViewById(R.id.listView);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itemList);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemList);
 
         listView.setOnItemClickListener(mMessageClickedHandler);
         listView.setAdapter(adapter);
+
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        TextView textView = (TextView)findViewById(R.id.textView3);
+        textView.setText(message);
+
     }
 
     private AdapterView.OnItemClickListener mMessageClickedHandler = new AdapterView.OnItemClickListener() {

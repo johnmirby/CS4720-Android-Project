@@ -18,12 +18,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/activity2_button"
+        android:text="@string/list_activity_button"
         android:id="@+id/button"
+        android:onClick="startListActivity"
         android:layout_above="@+id/gps_button"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="114dp"
-        android:onClick="startActivity2" />
+        android:layout_marginBottom="112dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,12 +34,36 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="97dp" />
 
-    <fragment
-        android:id="@+id/map"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="top"
-        android:layout_weight="1"
-        class="com.google.android.gms.maps.MapFragment"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/send_message_button"
+        android:id="@+id/button3"
+        android:onClick="sendMessage"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText2"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/button3"
+        android:layout_toLeftOf="@+id/button3"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/message_description"
+        android:id="@+id/textView2"
+        android:textSize="@dimen/abc_text_size_large_material"
+        android:layout_alignBottom="@+id/editText2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
 </RelativeLayout>
-<!-- From: file:/home/john/AndroidStudioProjects/CS4720AndroidProject/app/src/main/res/layout/activity_main.xml -->
+<!-- From: file:/C:/Users/student/AndroidStudioProjects/CS4720-Android-Project/app/src/main/res/layout/activity_main.xml -->
