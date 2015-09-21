@@ -3,15 +3,16 @@ package com.virginia.cs.cs4720androidproject;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
+import com.google.android.gms.maps.MapFragment;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 
-public class MapFragment extends Fragment {
+public class GMapFragment extends MapFragment {
 
-    public MapFragment() {
+    public GMapFragment() {
     }
 
     @Override
