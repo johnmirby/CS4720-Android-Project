@@ -8,4 +8,5 @@
         android:text="@string/map_fragment_title"
         android:textSize="@dimen/abc_text_size_headline_material" />
 
+
 </RelativeLayout>

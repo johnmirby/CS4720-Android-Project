@@ -7,22 +7,23 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
+
 public class GPSService extends Service {
 
+    private final IBinder mBinder = new MyBinder();
     LocationManager locationManager;
     LocationListener locationListener;
-
-    public GPSService() {
-    }
+    Location currentLocation;
 
     @Override
     public IBinder onBind(Intent intent) {
-        Log.i("GPS Service", "Service Binded");
-        return null;
+        return mBinder;
     }
 
     @Override
@@ -32,6 +33,7 @@ public class GPSService extends Service {
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
+                currentLocation = location;
                 displayCurrentLocation(location);
             }
 
@@ -66,10 +68,25 @@ public class GPSService extends Service {
 
     private void displayCurrentLocation(Location location) {
         Toast.makeText(this, "Current Location: Longitude - " + location.getLongitude()
-                + " Latitude - " + location.getLatitude(), Toast.LENGTH_LONG).show();
+                + " Latitude - " + location.getLatitude(), Toast.LENGTH_SHORT).show();
+    }
+
+    public LatLng getCurrentLocation() {
+        if (currentLocation != null){
+            return new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+        }
+        else {
+            return null;
+        }
     }
 
     private void _shutdownService() {
         locationManager.removeUpdates(locationListener);
+    }
+
+    public class MyBinder extends Binder {
+        GPSService getService() {
+            return GPSService.this;
+        }
     }
 }

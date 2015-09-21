@@ -1,24 +1,38 @@
 package com.virginia.cs.cs4720androidproject;
 
-import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
-public class MainActivity extends FragmentActivity implements LocationListener{
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+public class MainActivity extends FragmentActivity {
     public final static String EXTRA_MESSAGE = "com.virginia.cs.cs4720androidproject.MESSAGE";
 
-    LocationManager locationManager;
+    private GPSService gpsService;
+    boolean mBounded;
+
+    GoogleMap map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +52,31 @@ public class MainActivity extends FragmentActivity implements LocationListener{
         transaction.add(R.id.My_Container_3_ID, frg2, "Frag_Bottom_tag");
 
         transaction.commit();
+        map = ((com.google.android.gms.maps.MapFragment) getFragmentManager().findFragmentById(R.id.Google_Map)).getMap();
+        map.setMyLocationEnabled(true);
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Intent mIntent = new Intent(this, GPSService.class);
+        startService(mIntent);
+        bindService(mIntent, mConnection, BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(mBounded) {
+            unbindService(mConnection);
+            mBounded = false;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -62,33 +101,6 @@ public class MainActivity extends FragmentActivity implements LocationListener{
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onLocationChanged(Location location) {
-
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
-
-
-
-    /*public void getGPSCoordinates(View view) {
-        Intent intent = new Intent(this, GPSService.class);
-        startService(intent);
-    }*/
-
     public void viewCards(View view){
         Intent intent = new Intent(this, ListActivity.class);
         startActivity(intent);
@@ -101,4 +113,37 @@ public class MainActivity extends FragmentActivity implements LocationListener{
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
+
+    public void addTradeMarker(View view){
+        map = ((com.google.android.gms.maps.MapFragment) getFragmentManager().findFragmentById(R.id.Google_Map)).getMap();
+        String title = ((EditText)this.findViewById(R.id.editText2)).getText().toString();
+        String description = ((EditText)this.findViewById(R.id.editText4)).getText().toString();
+        LatLng pos = gpsService.getCurrentLocation();
+        if (pos != null){
+            map.addMarker(new MarkerOptions().position(pos).title(title).snippet(description));
+            CameraPosition camPos = new CameraPosition.Builder()
+                    .target(pos)
+                    .zoom(18)
+                    .build();
+            CameraUpdate camUpd3 = CameraUpdateFactory.newCameraPosition(camPos);
+            map.animateCamera(camUpd3);
+        }
+        else {
+            Toast.makeText(this, "Please wait for the current location to be retrieved.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private ServiceConnection mConnection = new ServiceConnection() {
+
+        public void onServiceConnected(ComponentName className,
+                                       IBinder binder) {
+            GPSService.MyBinder b = (GPSService.MyBinder) binder;
+            gpsService = b.getService();
+        }
+
+        public void onServiceDisconnected(ComponentName className) {
+            gpsService = null;
+        }
+    };
+
 }
