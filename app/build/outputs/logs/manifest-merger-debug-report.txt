@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:2:1-47:12
+ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:2:1-48:12
 	package
 		ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:3:5-51
 		INJECTED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml
@@ -60,7 +60,7 @@ ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src
 	android:name
 		ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:10:22-95
 application
-ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:12:5-45:19
+ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:12:5-46:19
 MERGED from [com.android.support:appcompat-v7:23.0.0] C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.0.0] C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services:7.8.0] C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\7.8.0\AndroidManifest.xml:19:5-20
@@ -185,13 +185,15 @@ ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src
 	android:name
 		ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:28:13-39
 activity#com.virginia.cs.cs4720androidproject.ListActivity
-ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:33:9-36:20
+ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:33:9-37:20
 	android:label
 		ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:35:13-56
+	android:alwaysRetainTaskState
+		ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:36:13-49
 	android:name
 		ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:34:13-41
 meta-data#com.google.android.gms.version
-ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:38:9-40:69
+ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:39:9-41:69
 MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\AndroidManifest.xml:21:9-23:69
 MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\AndroidManifest.xml:21:9-23:69
 MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\AndroidManifest.xml:21:9-23:69
@@ -222,15 +224,15 @@ MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Users\student\A
 MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\AndroidManifest.xml:21:9-23:69
 MERGED from [com.google.android.gms:play-services-base:7.8.0] C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\AndroidManifest.xml:21:9-23:69
 	android:value
-		ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:40:13-66
+		ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:41:13-66
 	android:name
-		ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:39:13-58
+		ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:40:13-58
 meta-data#com.google.android.maps.v2.API_KEY
-ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:41:9-43:55
+ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:42:9-44:55
 	android:value
-		ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:43:13-52
+		ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:44:13-52
 	android:name
-		ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:42:13-62
+		ADDED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:43:13-62
 uses-sdk
 INJECTED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.0.0] C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.0\AndroidManifest.xml:20:5-43
@@ -355,7 +357,7 @@ MERGED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\student\A
 	android:required
 		ADDED from [com.google.android.gms:play-services-maps:7.8.0] C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.8.0\AndroidManifest.xml:25:8-31
 android:uses-permission#android.permission.READ_EXTERNAL_STORAGE
-IMPLIED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:2:1-47:12 reason: com.google.android.gms.maps requested WRITE_EXTERNAL_STORAGE
+IMPLIED from C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\src\main\AndroidManifest.xml:2:1-48:12 reason: com.google.android.gms.maps requested WRITE_EXTERNAL_STORAGE
 uses-permission#com.google.android.c2dm.permission.RECEIVE
 ADDED from [com.google.android.gms:play-services-gcm:7.8.0] C:\Users\student\AndroidStudioProjects\CS4720-Android-Project\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.8.0\AndroidManifest.xml:21:5-82
 	android:name

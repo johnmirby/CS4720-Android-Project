@@ -35,9 +35,11 @@ public class ListActivity extends FragmentActivity {
 
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        TextView textView = (TextView)findViewById(R.id.textView3);
-        textView.setText(message);
-
+        if (message != null){
+            itemList.add(message);
+            adapter.notifyDataSetChanged();
+            Log.d("BuildingListView", itemList.toString());
+        }
     }
 
     private AdapterView.OnItemClickListener mMessageClickedHandler = new AdapterView.OnItemClickListener() {

@@ -48,6 +48,7 @@
 
         <activity
             android:name="com.virginia.cs.cs4720androidproject.ListActivity"
+            android:alwaysRetainTaskState="true"
             android:label="@string/title_list_activity" >
         </activity>
 

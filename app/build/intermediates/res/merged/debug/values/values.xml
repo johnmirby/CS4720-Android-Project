@@ -287,8 +287,8 @@
     <!-- From: file:/C:/Users/student/AndroidStudioProjects/CS4720-Android-Project/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Settings</string>
-    <string name="add_item_button">Add Card</string>
-    <string name="add_item_text">Enter item name</string>
+    <string name="add_card_button">Add Card</string>
+    <string name="add_item_text">Enter card name</string>
     <string name="app_name">CS4720 Android Project</string>
     <!-- From: file:/C:/Users/student/AndroidStudioProjects/CS4720-Android-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.8.0/res/values/auth_strings.xml -->
     <eat-comment/>
@@ -351,7 +351,12 @@
     <!-- From: file:/C:/Users/student/AndroidStudioProjects/CS4720-Android-Project/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="gps_button">Start the GPS Service</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="list_activity_button">View Card List</string>
+    <string name="location_button">Add Marker</string>
+    <string name="location_description_hint">Enter New Marker Description</string>
+    <string name="location_title_hint">Enter New Marker Title</string>
+    <string name="map_fragment_title">Google Maps</string>
     <string name="message_description">Enter Message:</string>
     <!-- From: file:/C:/Users/student/AndroidStudioProjects/CS4720-Android-Project/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
@@ -369,6 +374,8 @@
     <eat-comment/>
     <string name="ms1_about">Click on the Activity 2 button to go to a list view where you can enter list items.
         Click on the GPS button to start a GPS service.</string>
+    <string name="my_cards_fragment_title">My Cards</string>
+    <string name="my_trades_fragment_title">My Trades</string>
     <string name="send_message_button">Send Message</string>
     <!-- From: file:/C:/Users/student/AndroidStudioProjects/CS4720-Android-Project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values/values.xml -->
     <eat-comment/>
@@ -381,6 +388,7 @@
     <eat-comment/>
     <string name="title_activity_maps">Map</string>
     <string name="title_list_activity">List Activity</string>
+    <string name="view_cards_button">View Cards</string>
     <!-- From: file:/C:/Users/student/AndroidStudioProjects/CS4720-Android-Project/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.8.0/res/values/wallet_strings.xml -->
     <eat-comment/>
     <string name="wallet_buy_button_place_holder">Buy with Google</string>

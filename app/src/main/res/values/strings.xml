@@ -7,13 +7,20 @@
     <string name="list_activity_button">View Card List</string>
     <string name="message_description">Enter Message:</string>
     <string name="send_message_button">Send Message</string>
-    <string name="add_item_button">Add Card</string>
-    <string name="add_item_text">Enter item name</string>
+    <string name="add_card_button">Add Card</string>
+    <string name="add_item_text">Enter card name</string>
+    <string name="view_cards_button">View Cards</string>
     <string name="fragmentEditText1_label">Expansion</string>
     <string name="fragmentEditText2_label">Language</string>
     <string name="ms1_about">Click on the Activity 2 button to go to a list view where you can enter list items.
         Click on the GPS button to start a GPS service.</string>
     <string name="fragmentLabel3">Condition</string>
+    <string name="my_cards_fragment_title">My Cards</string>
+    <string name="my_trades_fragment_title">My Trades</string>
+    <string name="map_fragment_title">Google Maps</string>
+    <string name="location_title_hint">Enter New Marker Title</string>
+    <string name="location_description_hint">Enter New Marker Description</string>
+    <string name="location_button">Add Marker</string>
 
     <string-array name="condition_array">
         <item>NM</item>
@@ -23,5 +30,8 @@
         <item>D</item>
     </string-array>
     <string name="title_activity_maps">Map</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
