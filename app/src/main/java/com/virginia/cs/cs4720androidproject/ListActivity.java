@@ -23,6 +23,13 @@ public class ListActivity extends FragmentActivity {
     ArrayAdapter<String> adapter;
 
     @Override
+    public void onNewIntent(Intent intent)
+    {
+        super.onNewIntent(intent);
+        setIntent(intent);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
@@ -33,13 +40,13 @@ public class ListActivity extends FragmentActivity {
         listView.setOnItemClickListener(mMessageClickedHandler);
         listView.setAdapter(adapter);
 
-        Intent intent = getIntent();
+        /*Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         if (message != null){
             itemList.add(message);
             adapter.notifyDataSetChanged();
             Log.d("BuildingListView", itemList.toString());
-        }
+        }*/
     }
 
     private AdapterView.OnItemClickListener mMessageClickedHandler = new AdapterView.OnItemClickListener() {
@@ -47,6 +54,20 @@ public class ListActivity extends FragmentActivity {
             showListEntryDialog();
         }
     };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        if (message != null){
+            itemList.add(message);
+            adapter.notifyDataSetChanged();
+            Log.d("BuildingListView", itemList.toString());
+        }
+        intent.removeExtra(MainActivity.EXTRA_MESSAGE);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -68,6 +89,13 @@ public class ListActivity extends FragmentActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent backIntent = new Intent(this, MainActivity.class);
+        backIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(backIntent);
     }
 
     public void addItem(View view) {

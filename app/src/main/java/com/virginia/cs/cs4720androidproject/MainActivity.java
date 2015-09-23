@@ -12,6 +12,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -55,7 +56,6 @@ public class MainActivity extends FragmentActivity {
         map = ((com.google.android.gms.maps.MapFragment) getFragmentManager().findFragmentById(R.id.Google_Map)).getMap();
         map.setMyLocationEnabled(true);
     }
-
 
     @Override
     protected void onStart() {
@@ -101,13 +101,26 @@ public class MainActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Override super.onNewIntent() so that calls to getIntent() will return the
+     * latest intent that was used to start this Activity rather than the first
+     * intent.
+     */
+    @Override
+    public void onNewIntent(Intent intent){
+        super.onNewIntent(intent);
+        setIntent(intent);
+    }
+
     public void viewCards(View view){
         Intent intent = new Intent(this, ListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 
     public void addCard(View view) {
         Intent intent = new Intent(this, ListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         EditText editText = (EditText) findViewById(R.id.editText3);
         String message = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
