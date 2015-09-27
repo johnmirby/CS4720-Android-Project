@@ -27,8 +27,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 public class MainActivity extends FragmentActivity {
     public final static String EXTRA_MESSAGE = "com.virginia.cs.cs4720androidproject.MESSAGE";
+
+    private ArrayList<MarkerOptions> markerList = new ArrayList<>();
 
     private GPSService gpsService;
     boolean mBounded;
@@ -55,6 +59,16 @@ public class MainActivity extends FragmentActivity {
         transaction.commit();
         map = ((com.google.android.gms.maps.MapFragment) getFragmentManager().findFragmentById(R.id.Google_Map)).getMap();
         map.setMyLocationEnabled(true);
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey("markers")){
+                markerList = savedInstanceState.getParcelableArrayList("markers");
+                if (markerList != null){
+                    for (int i = 0; i < markerList.size(); i++) {
+                        map.addMarker(markerList.get(i));
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -80,6 +94,15 @@ public class MainActivity extends FragmentActivity {
         Intent mIntent = new Intent(this, GPSService.class);
         startService(mIntent);
         bindService(mIntent, mConnection, BIND_AUTO_CREATE);
+        for (int i = 0; i < markerList.size(); i++){
+            map.addMarker(markerList.get(i));
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putParcelableArrayList("markers", markerList);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -136,13 +159,15 @@ public class MainActivity extends FragmentActivity {
         String description = ((EditText)this.findViewById(R.id.editText4)).getText().toString();
         LatLng pos = gpsService.getCurrentLocation();
         if (pos != null){
-            map.addMarker(new MarkerOptions().position(pos).title(title).snippet(description));
+            MarkerOptions markerOptions = new MarkerOptions().position(pos).title(title).snippet(description);
+            map.addMarker(markerOptions);
             CameraPosition camPos = new CameraPosition.Builder()
                     .target(pos)
                     .zoom(18)
                     .build();
             CameraUpdate camUpd3 = CameraUpdateFactory.newCameraPosition(camPos);
             map.animateCamera(camUpd3);
+            markerList.add(markerOptions);
         }
         else {
             Toast.makeText(this, "Please wait for the current location to be retrieved.", Toast.LENGTH_SHORT).show();
