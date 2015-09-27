@@ -20,7 +20,8 @@ import java.util.ArrayList;
 public class ListActivity extends FragmentActivity {
 
     ArrayList<String> itemList = new ArrayList<>();
-    ArrayAdapter<String> adapter;
+    ArrayList<Card> cardList = new ArrayList<>();
+    ArrayAdapter<Card> adapter;
 
     @Override
     public void onNewIntent(Intent intent)
@@ -35,7 +36,7 @@ public class ListActivity extends FragmentActivity {
         setContentView(R.layout.activity_2);
 
         ListView listView = (ListView)findViewById(R.id.listView);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemList);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, cardList);
 
         listView.setOnItemClickListener(mMessageClickedHandler);
         listView.setAdapter(adapter);
@@ -51,7 +52,8 @@ public class ListActivity extends FragmentActivity {
 
     private AdapterView.OnItemClickListener mMessageClickedHandler = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView parent, View v, int position, long id) {
-            showListEntryDialog();
+            Card card = (Card)parent.getItemAtPosition(position);
+            showListEntryDialog(card);
         }
     };
 
@@ -62,7 +64,7 @@ public class ListActivity extends FragmentActivity {
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         if (message != null){
-            itemList.add(message);
+            cardList.add(new Card(message));
             adapter.notifyDataSetChanged();
             Log.d("BuildingListView", itemList.toString());
         }
@@ -101,13 +103,15 @@ public class ListActivity extends FragmentActivity {
     public void addItem(View view) {
         EditText editText = (EditText)findViewById(R.id.editText);
         itemList.add(editText.getText().toString());
+        cardList.add(new Card(editText.getText().toString()));
         adapter.notifyDataSetChanged();
-        Log.d("BuildingListView", itemList.toString());
+        Log.d("BuildingListView", cardList.toString());
     }
 
-    private void showListEntryDialog() {
+    private void showListEntryDialog(Card card) {
         FragmentManager fm = getSupportFragmentManager();
         ListEntryFragment listEntryDialog = new ListEntryFragment();
+        listEntryDialog.card = card;
         listEntryDialog.show(fm, "fragment_list_entry");
     }
 

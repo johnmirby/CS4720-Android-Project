@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -22,6 +23,10 @@ import android.widget.Spinner;
 public class ListEntryFragment extends DialogFragment {
 
     Spinner cardConditions;
+    EditText expansionText;
+    EditText languageText;
+
+    public Card card;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,7 +68,26 @@ public class ListEntryFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_list_entry, container);
         getDialog().setTitle("Enter Card Information");
         cardConditions = (Spinner) view.findViewById(R.id.fragmentSpinner);
+        cardConditions.setSelection(card.getConditionIndex());
+        cardConditions.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                card.setConditionIndex(parent.getSelectedItemPosition());
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        expansionText = (EditText)view.findViewById(R.id.fragmentEditText2);
+        if (expansionText != null) {
+            expansionText.setText(card.getExpansion());
+        }
+        languageText = (EditText)view.findViewById(R.id.fragmentEditText1);
+        if (languageText != null) {
+            languageText.setText(card.getLanguage());
+        }
         return view;
     }
 
@@ -78,8 +102,9 @@ public class ListEntryFragment extends DialogFragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        card.setExpansion(expansionText.getText().toString());
+        card.setLanguage(languageText.getText().toString());
     }
-
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
