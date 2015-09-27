@@ -77,6 +77,9 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Intent mIntent = new Intent(this, GPSService.class);
+        startService(mIntent);
+        bindService(mIntent, mConnection, BIND_AUTO_CREATE);
     }
 
     @Override

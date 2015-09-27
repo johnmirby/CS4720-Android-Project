@@ -34,7 +34,6 @@ public class GPSService extends Service {
             @Override
             public void onLocationChanged(Location location) {
                 currentLocation = location;
-                displayCurrentLocation(location);
             }
 
             @Override
