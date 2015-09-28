@@ -1,5 +1,6 @@
 package com.virginia.cs.cs4720androidproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -15,11 +16,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class ListActivity extends FragmentActivity {
 
-    ArrayList<String> itemList = new ArrayList<>();
+    String CARDFILE = "Card_File";
+
     ArrayList<Card> cardList = new ArrayList<>();
     ArrayAdapter<Card> adapter;
 
@@ -41,13 +49,26 @@ public class ListActivity extends FragmentActivity {
         listView.setOnItemClickListener(mMessageClickedHandler);
         listView.setAdapter(adapter);
 
-        /*Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        if (message != null){
-            itemList.add(message);
-            adapter.notifyDataSetChanged();
-            Log.d("BuildingListView", itemList.toString());
-        }*/
+        //restoreCards
+        try {
+            FileInputStream fis = openFileInput(CARDFILE);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+            String line = reader.readLine();
+            while(line != null){
+                Card card = new Card(line.split(",")[0]);
+                card.setExpansion(line.split(",")[1]);
+                card.setLanguage(line.split(",")[2]);
+                card.setConditionIndex(Integer.parseInt(line.split(",")[3]));
+                cardList.add(card);
+                adapter.notifyDataSetChanged();
+                Log.d("BuildingListView", cardList.toString());
+                line = reader.readLine();
+            }
+            fis.close();
+        }catch(Exception e) {
+            Log.e("StorageExample", e.getMessage());
+        }
+
     }
 
     private AdapterView.OnItemClickListener mMessageClickedHandler = new AdapterView.OnItemClickListener() {
@@ -66,7 +87,6 @@ public class ListActivity extends FragmentActivity {
         if (message != null){
             cardList.add(new Card(message));
             adapter.notifyDataSetChanged();
-            Log.d("BuildingListView", itemList.toString());
         }
         intent.removeExtra(MainActivity.EXTRA_MESSAGE);
     }
@@ -100,10 +120,30 @@ public class ListActivity extends FragmentActivity {
         startActivity(backIntent);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        //save cards
+        try {
+            FileOutputStream fos = openFileOutput(CARDFILE, Context.MODE_PRIVATE);
+            for (int i = 0; i < cardList.size(); i++) {
+                String cardCSV = cardList.get(i).toCSV();
+
+                fos.write(cardCSV.getBytes());
+                fos.write("\r\n".getBytes());
+            }
+            fos.close();
+        }
+        catch (Exception e) {
+            Log.e("Exception", e.getMessage());
+        }
+    }
+
     public void addItem(View view) {
         EditText editText = (EditText)findViewById(R.id.editText);
-        itemList.add(editText.getText().toString());
-        cardList.add(new Card(editText.getText().toString()));
+        Card card = new Card(editText.getText().toString());
+        cardList.add(card);
         adapter.notifyDataSetChanged();
         Log.d("BuildingListView", cardList.toString());
     }

@@ -1,5 +1,7 @@
 package com.virginia.cs.cs4720androidproject;
 
+import android.content.Intent;
+
 public class Card {
 
     private String name;
@@ -11,6 +13,7 @@ public class Card {
     public Card(String name){
         this.name = name;
         this.expansion = "";
+        this.language = "";
         this.conditionIndex = 0;
     }
 
@@ -49,5 +52,9 @@ public class Card {
 
     public int getConditionIndex(){
         return this.conditionIndex;
+    }
+
+    public String toCSV(){
+        return this.name + "," + this.expansion + "," + this.language + "," + Integer.toString(this.conditionIndex);
     }
 }
