@@ -27,10 +27,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class MainActivity extends FragmentActivity {
     public final static String EXTRA_MESSAGE = "com.virginia.cs.cs4720androidproject.MESSAGE";
+
+    String MARKERFILE = "Marker_File";
 
     private ArrayList<MarkerOptions> markerList = new ArrayList<>();
 
@@ -57,6 +63,7 @@ public class MainActivity extends FragmentActivity {
         transaction.add(R.id.My_Container_3_ID, frg2, "Frag_Bottom_tag");
 
         transaction.commit();
+
         map = ((com.google.android.gms.maps.MapFragment) getFragmentManager().findFragmentById(R.id.Google_Map)).getMap();
         map.setMyLocationEnabled(true);
         if (savedInstanceState != null) {
@@ -68,6 +75,29 @@ public class MainActivity extends FragmentActivity {
                     }
                 }
             }
+        }
+
+        try {
+            FileInputStream fis = openFileInput(MARKERFILE);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+            String line = reader.readLine();
+            while(line != null){
+                MarkerOptions marker = new MarkerOptions();
+                String markerTitle = line.split(",")[0];
+                String markerSnippet = line.split(",")[1];
+                Double markerLatitude = Double.parseDouble(line.split(",")[2]);
+                Double markerLongitude = Double.parseDouble(line.split(",")[3]);
+                marker.position(new LatLng(markerLatitude, markerLongitude))
+                        .title(markerTitle).snippet(markerSnippet);
+                markerList.add(marker);
+                for (int i = 0; i < markerList.size(); i++) {
+                    map.addMarker(markerList.get(i));
+                }
+                line = reader.readLine();
+            }
+            fis.close();
+        }catch(Exception e) {
+            Log.e("Cannot Read Marker File", e.getMessage());
         }
     }
 
@@ -85,6 +115,20 @@ public class MainActivity extends FragmentActivity {
         if(mBounded) {
             unbindService(mConnection);
             mBounded = false;
+        }
+
+        try {
+            FileOutputStream fos = openFileOutput(MARKERFILE, Context.MODE_PRIVATE);
+            for (int i = 0; i < markerList.size(); i++) {
+                String markerCSV = markerToCSV(markerList.get(i));
+
+                fos.write(markerCSV.getBytes());
+                fos.write("\r\n".getBytes());
+            }
+            fos.close();
+        }
+        catch (Exception e) {
+            Log.e("Exception", e.getMessage());
         }
     }
 
@@ -136,6 +180,11 @@ public class MainActivity extends FragmentActivity {
     public void onNewIntent(Intent intent){
         super.onNewIntent(intent);
         setIntent(intent);
+    }
+
+    public String markerToCSV(MarkerOptions marker){
+        return marker.getTitle() + "," + marker.getSnippet() + "," + marker.getPosition().latitude
+                + "," + marker.getPosition().longitude;
     }
 
     public void viewCards(View view){

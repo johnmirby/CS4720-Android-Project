@@ -66,7 +66,7 @@ public class ListActivity extends FragmentActivity {
             }
             fis.close();
         }catch(Exception e) {
-            Log.e("StorageExample", e.getMessage());
+            Log.e("Cannot Read Card File", e.getMessage());
         }
 
     }
