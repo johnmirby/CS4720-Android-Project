@@ -21,6 +21,7 @@
     <string name="location_title_hint">Enter New Marker Title</string>
     <string name="location_description_hint">Enter New Marker Description</string>
     <string name="location_button">Add Marker</string>
+    <string name="clear_list_button">Clear List</string>
 
     <string-array name="condition_array">
         <item>NM</item>

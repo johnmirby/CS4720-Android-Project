@@ -155,4 +155,9 @@ public class ListActivity extends FragmentActivity {
         listEntryDialog.show(fm, "fragment_list_entry");
     }
 
+    public void clearList(View view) {
+        cardList.clear();
+        adapter.notifyDataSetChanged();
+    }
+
 }

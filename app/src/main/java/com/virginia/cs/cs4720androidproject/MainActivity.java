@@ -107,6 +107,7 @@ public class MainActivity extends FragmentActivity {
         Intent mIntent = new Intent(this, GPSService.class);
         startService(mIntent);
         bindService(mIntent, mConnection, BIND_AUTO_CREATE);
+        mBounded = true;
     }
 
     @Override
@@ -140,6 +141,15 @@ public class MainActivity extends FragmentActivity {
         bindService(mIntent, mConnection, BIND_AUTO_CREATE);
         for (int i = 0; i < markerList.size(); i++){
             map.addMarker(markerList.get(i));
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(mBounded) {
+            unbindService(mConnection);
+            mBounded = false;
         }
     }
 
