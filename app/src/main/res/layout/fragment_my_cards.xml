@@ -26,10 +26,10 @@
         android:layout_height="wrap_content"
         android:text="@string/add_card_button"
         android:id="@+id/button"
+        android:onClick="addCard"
         android:layout_alignBottom="@+id/editText3"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="addCard" />
+        android:layout_toRightOf="@+id/editText3"
+        android:layout_toEndOf="@+id/editText3" />
 
     <Button
         android:layout_width="wrap_content"

@@ -203,6 +203,13 @@ public class MainActivity extends FragmentActivity {
         startActivity(intent);
     }
 
+    public void viewTrades(View view){
+        FragmentManager fm = getFragmentManager();
+        TradesDialog tradesDialog = new TradesDialog();
+        tradesDialog.trades = markerList;
+        tradesDialog.show(fm, "fragment_list_entry");
+    }
+
     public void addCard(View view) {
         Intent intent = new Intent(this, ListActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
