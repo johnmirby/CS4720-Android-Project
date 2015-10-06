@@ -36,9 +36,9 @@
         android:layout_height="wrap_content"
         android:text="@string/view_cards_button"
         android:id="@+id/button3"
+        android:onClick="viewCards"
         android:layout_below="@+id/button"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="viewCards" />
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

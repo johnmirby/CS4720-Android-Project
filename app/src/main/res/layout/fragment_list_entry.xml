@@ -10,12 +10,10 @@
         android:id="@+id/fragmentEditText1"
         android:text=""
         android:layout_weight="1"
-        android:layout_marginLeft="255dp"
-        android:layout_marginStart="255dp"
         android:layout_marginTop="60dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_toEndOf="@+id/fragmentLabel2"
+        android:layout_toRightOf="@+id/fragmentLabel2" />
 
     <EditText
         android:layout_width="fill_parent"
@@ -23,8 +21,8 @@
         android:id="@+id/fragmentEditText2"
         android:layout_weight="1"
         android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/fragmentEditText1"
-        android:layout_alignStart="@+id/fragmentEditText1" />
+        android:layout_toRightOf="@+id/fragmentLabel1"
+        android:layout_toEndOf="@+id/fragmentLabel1" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,9 +31,7 @@
         android:id="@+id/fragmentLabel1"
         android:layout_alignBottom="@+id/fragmentEditText2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="28dp"
-        android:layout_marginStart="28dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,18 +40,20 @@
         android:id="@+id/fragmentLabel2"
         android:layout_alignBottom="@+id/fragmentEditText1"
         android:layout_alignRight="@+id/fragmentLabel1"
-        android:layout_alignEnd="@+id/fragmentLabel1" />
+        android:layout_alignEnd="@+id/fragmentLabel1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fragmentSpinner"
         android:layout_below="@+id/fragmentEditText1"
-        android:layout_alignLeft="@+id/fragmentEditText1"
-        android:layout_alignStart="@+id/fragmentEditText1"
         android:layout_marginTop="31dp"
         android:spinnerMode="dropdown"
-        android:entries="@array/condition_array" />
+        android:entries="@array/condition_array"
+        android:layout_toRightOf="@+id/fragmentSpinnerLabel"
+        android:layout_toEndOf="@+id/fragmentSpinnerLabel" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -64,6 +62,8 @@
         android:id="@+id/fragmentSpinnerLabel"
         android:layout_alignTop="@+id/fragmentSpinner"
         android:layout_alignRight="@+id/fragmentLabel2"
-        android:layout_alignEnd="@+id/fragmentLabel2" />
+        android:layout_alignEnd="@+id/fragmentLabel2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
