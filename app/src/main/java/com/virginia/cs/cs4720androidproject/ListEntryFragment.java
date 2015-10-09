@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
@@ -22,6 +23,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 /**
@@ -39,6 +43,7 @@ public class ListEntryFragment extends DialogFragment {
     EditText languageText;
     Uri imageUri;
     View view;
+    String mCurrentPhotoPath;
 
     public Card card;
 
@@ -73,14 +78,23 @@ public class ListEntryFragment extends DialogFragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        setRetainInstance(true);
 
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_list_entry, container);
         getDialog().setTitle("Enter Card Information");
+
+        if (card.getImageFileName().length() > 0) {
+            ImageView imageView = (ImageView) view.findViewById(R.id.cardImage);
+            Bitmap bitmap = BitmapFactory.decodeFile(card.getImageFileName());
+            imageView.setImageBitmap(bitmap);
+        }
+
         cardConditions = (Spinner) view.findViewById(R.id.fragmentSpinner);
         cardConditions.setSelection(card.getConditionIndex());
         cardConditions.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -106,8 +120,8 @@ public class ListEntryFragment extends DialogFragment {
         Button b = (Button) view.findViewById(R.id.openCameraButton);
         b.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, 1337);
+                dispatchTakePictureIntent();
+                card.setImageFileName(mCurrentPhotoPath);
             }
         });
 
@@ -136,9 +150,42 @@ public class ListEntryFragment extends DialogFragment {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1337) {
-            Bitmap image = (Bitmap) data.getExtras().get("data");
-            ImageView imageview = (ImageView) view.findViewById(R.id.cardImage);
-            imageview.setImageBitmap(image);
+            card.setImageFileName(mCurrentPhotoPath);
+            ImageView imageView = (ImageView) view.findViewById(R.id.cardImage);
+            Bitmap bitmap = BitmapFactory.decodeFile(card.getImageFileName());
+            imageView.setImageBitmap(bitmap);
+        }
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File photoFile = null;
+        try {
+            photoFile = createImageFile();
+        } catch (IOException ex) {
+
+        }
+        if (photoFile != null) {
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                    Uri.fromFile(photoFile));
+            startActivityForResult(takePictureIntent, 1337);
         }
     }
 

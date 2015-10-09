@@ -8,6 +8,7 @@ public class Card {
     private String expansion;
     private String language;
     private int conditionIndex;
+    private String imageFileName;
 
 
     public Card(String name){
@@ -15,6 +16,7 @@ public class Card {
         this.expansion = "";
         this.language = "";
         this.conditionIndex = 0;
+        this.imageFileName = "";
     }
 
     @Override
@@ -38,6 +40,8 @@ public class Card {
         this.conditionIndex = index;
     }
 
+    public void setImageFileName(String imageFileName) { this.imageFileName = imageFileName; }
+
     public String getName(){
         return this.name;
     }
@@ -54,7 +58,10 @@ public class Card {
         return this.conditionIndex;
     }
 
+    public String getImageFileName() { return this.imageFileName; }
+
     public String toCSV(){
-        return this.name + "," + this.expansion + "," + this.language + "," + Integer.toString(this.conditionIndex);
+        return this.name + "," + this.expansion + "," + this.language
+                + "," + Integer.toString(this.conditionIndex) + "," + this.imageFileName;
     }
 }

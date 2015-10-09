@@ -77,27 +77,29 @@ public class MainActivity extends FragmentActivity {
             }
         }
 
-        try {
-            FileInputStream fis = openFileInput(MARKERFILE);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
-            String line = reader.readLine();
-            while(line != null){
-                MarkerOptions marker = new MarkerOptions();
-                String markerTitle = line.split(",")[0];
-                String markerSnippet = line.split(",")[1];
-                Double markerLatitude = Double.parseDouble(line.split(",")[2]);
-                Double markerLongitude = Double.parseDouble(line.split(",")[3]);
-                marker.position(new LatLng(markerLatitude, markerLongitude))
-                        .title(markerTitle).snippet(markerSnippet);
-                markerList.add(marker);
-                for (int i = 0; i < markerList.size(); i++) {
-                    map.addMarker(markerList.get(i));
+        if (markerList.isEmpty()) {
+            try {
+                FileInputStream fis = openFileInput(MARKERFILE);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+                String line = reader.readLine();
+                while (line != null) {
+                    MarkerOptions marker = new MarkerOptions();
+                    String markerTitle = line.split(",")[0];
+                    String markerSnippet = line.split(",")[1];
+                    Double markerLatitude = Double.parseDouble(line.split(",")[2]);
+                    Double markerLongitude = Double.parseDouble(line.split(",")[3]);
+                    marker.position(new LatLng(markerLatitude, markerLongitude))
+                            .title(markerTitle).snippet(markerSnippet);
+                    markerList.add(marker);
+                    for (int i = 0; i < markerList.size(); i++) {
+                        map.addMarker(markerList.get(i));
+                    }
+                    line = reader.readLine();
                 }
-                line = reader.readLine();
+                fis.close();
+            } catch (Exception e) {
+                Log.e("Cannot Read Marker File", e.getMessage());
             }
-            fis.close();
-        }catch(Exception e) {
-            Log.e("Cannot Read Marker File", e.getMessage());
         }
     }
 
