@@ -1,15 +1,27 @@
 package com.virginia.cs.cs4720androidproject;
 
+import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import java.io.File;
 
 
 /**
@@ -25,6 +37,8 @@ public class ListEntryFragment extends DialogFragment {
     Spinner cardConditions;
     EditText expansionText;
     EditText languageText;
+    Uri imageUri;
+    View view;
 
     public Card card;
 
@@ -65,7 +79,7 @@ public class ListEntryFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list_entry, container);
+        view = inflater.inflate(R.layout.fragment_list_entry, container);
         getDialog().setTitle("Enter Card Information");
         cardConditions = (Spinner) view.findViewById(R.id.fragmentSpinner);
         cardConditions.setSelection(card.getConditionIndex());
@@ -88,6 +102,15 @@ public class ListEntryFragment extends DialogFragment {
         if (languageText != null) {
             languageText.setText(card.getLanguage());
         }
+
+        Button b = (Button) view.findViewById(R.id.openCameraButton);
+        b.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, 1337);
+            }
+        });
+
         return view;
     }
 
@@ -109,6 +132,14 @@ public class ListEntryFragment extends DialogFragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1337) {
+            Bitmap image = (Bitmap) data.getExtras().get("data");
+            ImageView imageview = (ImageView) view.findViewById(R.id.cardImage);
+            imageview.setImageBitmap(image);
+        }
     }
 
 }
