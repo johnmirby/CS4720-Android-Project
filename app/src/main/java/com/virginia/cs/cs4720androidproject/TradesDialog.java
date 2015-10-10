@@ -79,14 +79,15 @@ public class TradesDialog extends DialogFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_trades_dialog, container, false);
         list = (ListView) view.findViewById(R.id.trades_listView);
-        generateTradeStrings();
+        if (tradeStrings.size() == 0) {
+            generateTradeStrings();
+        }
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, tradeStrings);
         list.setAdapter(adapter);
-        //setRetainInstance(true);
         getDialog().setTitle("My Trades");
         map = ((com.google.android.gms.maps.MapFragment) getFragmentManager().findFragmentById(R.id.Google_Map)).getMap();
 
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
@@ -117,7 +118,7 @@ public class TradesDialog extends DialogFragment {
             }
 
         });
-
+        setRetainInstance(true);
         return view;
     }
 
@@ -125,10 +126,13 @@ public class TradesDialog extends DialogFragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-        ((com.google.android.gms.maps.MapFragment) getFragmentManager().findFragmentById(R.id.Google_Map)).getMap();
-        map.clear();
-        for (int i = 0; i < trades.size(); i++) {
-            map.addMarker(trades.get(i));
+        if (map != null) {
+            map.clear();
+            if (trades != null) {
+                for (int i = 0; i < trades.size(); i++) {
+                    map.addMarker(trades.get(i));
+                }
+            }
         }
     }
 
@@ -148,9 +152,11 @@ public class TradesDialog extends DialogFragment {
     }
 
     private void generateTradeStrings(){
-        for (int i = 0; i < trades.size(); i++){
-            String tradeString = trades.get(i).getTitle();
-            tradeStrings.add(tradeString);
+        if (trades != null) {
+            for (int i = 0; i < trades.size(); i++) {
+                String tradeString = trades.get(i).getTitle();
+                tradeStrings.add(tradeString);
+            }
         }
     }
 
