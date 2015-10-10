@@ -2365,18 +2365,17 @@ containing a value of this type.
         public static final int mr_media_route_controller_stop=0x7f070056;
         public static final int mr_system_route_name=0x7f070035;
         public static final int mr_user_route_category_name=0x7f070036;
-        public static final int ms1_about=0x7f070057;
-        public static final int my_cards_fragment_title=0x7f070058;
-        public static final int my_trades_fragment_title=0x7f070059;
-        public static final int open_camera_button=0x7f07005a;
-        public static final int send_message_button=0x7f07005b;
+        public static final int my_cards_fragment_title=0x7f070057;
+        public static final int my_trades_fragment_title=0x7f070058;
+        public static final int open_camera_button=0x7f070059;
+        public static final int send_message_button=0x7f07005a;
         public static final int status_bar_notification_info_overflow=0x7f070037;
-        public static final int store_picture_message=0x7f07005c;
-        public static final int store_picture_title=0x7f07005d;
-        public static final int title_activity_maps=0x7f07005e;
-        public static final int title_list_activity=0x7f07005f;
-        public static final int view_cards_button=0x7f070060;
-        public static final int view_markers_button=0x7f070061;
+        public static final int store_picture_message=0x7f07005b;
+        public static final int store_picture_title=0x7f07005c;
+        public static final int title_activity_maps=0x7f07005d;
+        public static final int title_list_activity=0x7f07005e;
+        public static final int view_cards_button=0x7f07005f;
+        public static final int view_markers_button=0x7f070060;
         public static final int wallet_buy_button_place_holder=0x7f070038;
     }
     public static final class style {
