@@ -11,6 +11,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.provider.SyncStateContract;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -38,7 +39,7 @@ public class MainActivity extends FragmentActivity {
 
     String MARKERFILE = "Marker_File";
 
-    private ArrayList<MarkerOptions> markerList = new ArrayList<>();
+    public ArrayList<MarkerOptions> markerList = new ArrayList<>();
 
     private GPSService gpsService;
     boolean mBounded;
@@ -66,6 +67,7 @@ public class MainActivity extends FragmentActivity {
 
         map = ((com.google.android.gms.maps.MapFragment) getFragmentManager().findFragmentById(R.id.Google_Map)).getMap();
         map.setMyLocationEnabled(true);
+
         if (savedInstanceState != null) {
             if (savedInstanceState.containsKey("markers")){
                 markerList = savedInstanceState.getParcelableArrayList("markers");
@@ -135,6 +137,20 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Location mapLocation = map.getMyLocation();
+        if (mapLocation != null) {
+            LatLng pos = new LatLng(mapLocation.getLatitude(), mapLocation.getLongitude());
+            CameraPosition camPos = new CameraPosition.Builder()
+                    .target(pos)
+                    .zoom(18)
+                    .build();
+            CameraUpdate camUpd3 = CameraUpdateFactory.newCameraPosition(camPos);
+            map.animateCamera(camUpd3);
+        }
+    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -190,7 +206,7 @@ public class MainActivity extends FragmentActivity {
         FragmentManager fm = getFragmentManager();
         TradesDialog tradesDialog = new TradesDialog();
         tradesDialog.trades = markerList;
-        tradesDialog.show(fm, "fragment_list_entry");
+        tradesDialog.show(fm, "fragment_trades_dialog");
     }
 
     public void addCard(View view) {

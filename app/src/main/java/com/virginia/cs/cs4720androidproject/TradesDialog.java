@@ -1,21 +1,26 @@
 package com.virginia.cs.cs4720androidproject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -38,6 +43,7 @@ public class TradesDialog extends DialogFragment {
     ArrayList<String> tradeStrings = new ArrayList<>();
     ArrayAdapter<String> adapter;
     ListView list;
+    GoogleMap map;
 
     private OnFragmentInteractionListener mListener;
 
@@ -76,22 +82,54 @@ public class TradesDialog extends DialogFragment {
         generateTradeStrings();
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, tradeStrings);
         list.setAdapter(adapter);
-        setRetainInstance(true);
+        //setRetainInstance(true);
         getDialog().setTitle("My Trades");
-        return view;
-    }
+        map = ((com.google.android.gms.maps.MapFragment) getFragmentManager().findFragmentById(R.id.Google_Map)).getMap();
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    final int position, long rowId) {
+
+
+                AlertDialog.Builder adb = new AlertDialog.Builder(getActivity());
+                adb.setTitle(trades.get(position).getTitle())
+                        .setMessage(trades.get(position).getSnippet())
+                        .setPositiveButton("Delete",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        trades.remove(position);
+                                        tradeStrings.remove(position);
+                                        adapter.notifyDataSetChanged();
+                                    }
+                                }
+                        )
+                        .setNegativeButton("Cancel",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        dialog.dismiss();
+                                    }
+                                }
+                        )
+                        .show();
+
+            }
+
+        });
+
+        return view;
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        ((com.google.android.gms.maps.MapFragment) getFragmentManager().findFragmentById(R.id.Google_Map)).getMap();
+        map.clear();
+        for (int i = 0; i < trades.size(); i++) {
+            map.addMarker(trades.get(i));
+        }
     }
 
     /**
