@@ -882,8 +882,9 @@ int string store_picture_message 0x7f07005b
 int string store_picture_title 0x7f07005c
 int string title_activity_maps 0x7f07005d
 int string title_list_activity 0x7f07005e
-int string view_cards_button 0x7f07005f
-int string view_markers_button 0x7f070060
+int string trade_dialog_text 0x7f07005f
+int string view_cards_button 0x7f070060
+int string view_markers_button 0x7f070061
 int string wallet_buy_button_place_holder 0x7f070038
 int style AlertDialog_AppCompat 0x7f09007a
 int style AlertDialog_AppCompat_Light 0x7f09007b

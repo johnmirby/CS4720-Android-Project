@@ -2374,8 +2374,9 @@ containing a value of this type.
         public static final int store_picture_title=0x7f07005c;
         public static final int title_activity_maps=0x7f07005d;
         public static final int title_list_activity=0x7f07005e;
-        public static final int view_cards_button=0x7f07005f;
-        public static final int view_markers_button=0x7f070060;
+        public static final int trade_dialog_text=0x7f07005f;
+        public static final int view_cards_button=0x7f070060;
+        public static final int view_markers_button=0x7f070061;
         public static final int wallet_buy_button_place_holder=0x7f070038;
     }
     public static final class style {

@@ -77,6 +77,7 @@ public class TradesDialog extends DialogFragment {
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, tradeStrings);
         list.setAdapter(adapter);
         setRetainInstance(true);
+        getDialog().setTitle("My Trades");
         return view;
     }
 

@@ -22,6 +22,7 @@
     <string name="view_markers_button">All Trades</string>
     <string name="clear_list_button">Clear List</string>
     <string name="open_camera_button">Add Image</string>
+    <string name="trade_dialog_text">All Trades</string>
 
     <string-array name="condition_array">
         <item>NM</item>

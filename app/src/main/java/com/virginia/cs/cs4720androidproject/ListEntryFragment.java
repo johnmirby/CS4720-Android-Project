@@ -124,7 +124,7 @@ public class ListEntryFragment extends DialogFragment {
                 card.setImageFileName(mCurrentPhotoPath);
             }
         });
-
+        getDialog().setTitle(card.getName());
         return view;
     }
 
