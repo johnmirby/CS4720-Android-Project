@@ -15,6 +15,7 @@
     <string name="fragmentLabel3">Condition: </string>
     <string name="my_cards_fragment_title">My Cards</string>
     <string name="my_trades_fragment_title">My Trades</string>
+    <string name="wanted_cards_title">Wanted Cards</string>
     <string name="map_fragment_title">Google Maps</string>
     <string name="location_title_hint">Who are you trading with?</string>
     <string name="location_description_hint">What are the details of the trade?</string>
@@ -22,6 +23,7 @@
     <string name="view_markers_button">All Trades</string>
     <string name="clear_list_button">Clear List</string>
     <string name="open_camera_button">Add Image</string>
+    <string name="delete_card_button">Delete Card</string>
     <string name="trade_dialog_text">All Trades</string>
 
     <string-array name="condition_array">

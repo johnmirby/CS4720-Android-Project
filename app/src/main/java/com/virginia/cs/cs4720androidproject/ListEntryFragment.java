@@ -1,7 +1,9 @@
 package com.virginia.cs.cs4720androidproject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -108,11 +110,11 @@ public class ListEntryFragment extends DialogFragment {
 
             }
         });
-        expansionText = (EditText)view.findViewById(R.id.fragmentEditText2);
+        expansionText = (EditText) view.findViewById(R.id.fragmentEditText2);
         if (expansionText != null) {
             expansionText.setText(card.getExpansion());
         }
-        languageText = (EditText)view.findViewById(R.id.fragmentEditText1);
+        languageText = (EditText) view.findViewById(R.id.fragmentEditText1);
         if (languageText != null) {
             languageText.setText(card.getLanguage());
         }

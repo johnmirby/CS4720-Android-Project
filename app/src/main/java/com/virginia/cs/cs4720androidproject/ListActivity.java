@@ -1,6 +1,8 @@
 package com.virginia.cs.cs4720androidproject;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v4.app.FragmentActivity;
@@ -30,9 +32,13 @@ import java.util.ArrayList;
 public class ListActivity extends FragmentActivity {
 
     String CARDFILE = "Card_File";
+    String WANTEDCARDFILE = "Wanted_Card_File";
 
     ArrayList<Card> cardList = new ArrayList<>();
     ArrayAdapter<Card> adapter;
+
+    ArrayList<Card> wantedCardList = new ArrayList<>();
+    ArrayAdapter<Card> adapter2;
 
     @Override
     public void onNewIntent(Intent intent)
@@ -51,6 +57,12 @@ public class ListActivity extends FragmentActivity {
 
         listView.setOnItemClickListener(mMessageClickedHandler);
         listView.setAdapter(adapter);
+
+        ListView listView2 = (ListView)findViewById(R.id.listView2);
+        adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, wantedCardList);
+
+        listView2.setOnItemClickListener(mMessageClickedHandler2);
+        listView2.setAdapter(adapter2);
 
         //restoreCards
         try {
@@ -73,12 +85,39 @@ public class ListActivity extends FragmentActivity {
             Log.e("Cannot Read Card File", e.getMessage());
         }
 
+        try {
+            FileInputStream fis2 = openFileInput(WANTEDCARDFILE);
+            BufferedReader reader2 = new BufferedReader(new InputStreamReader(fis2));
+            String line2 = reader2.readLine();
+            while(line2 != null){
+                Card card = new Card(line2.split(",")[0]);
+                card.setExpansion(line2.split(",")[1]);
+                card.setLanguage(line2.split(",")[2]);
+                card.setConditionIndex(Integer.parseInt(line2.split(",")[3]));
+                card.setImageFileName(line2.split(",")[4]);
+                wantedCardList.add(card);
+                adapter2.notifyDataSetChanged();
+                Log.d("BuildingListView", wantedCardList.toString());
+                line2 = reader2.readLine();
+            }
+            fis2.close();
+        }catch(Exception e) {
+            Log.e("Cannot Read W Card File", e.getMessage());
+        }
+
     }
 
     private AdapterView.OnItemClickListener mMessageClickedHandler = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView parent, View v, int position, long id) {
             Card card = (Card)parent.getItemAtPosition(position);
             showListEntryDialog(card);
+        }
+    };
+
+    private AdapterView.OnItemClickListener mMessageClickedHandler2 = new AdapterView.OnItemClickListener() {
+        public void onItemClick(AdapterView parent, View v, int position, long id) {
+            Card card = (Card)parent.getItemAtPosition(position);
+            showListEntryDialog2(card);
         }
     };
 
@@ -142,6 +181,21 @@ public class ListActivity extends FragmentActivity {
         catch (Exception e) {
             Log.e("Exception", e.getMessage());
         }
+
+        try {
+            FileOutputStream fos2 = openFileOutput(WANTEDCARDFILE, Context.MODE_PRIVATE);
+            for (int i = 0; i < wantedCardList.size(); i++) {
+                String cardCSV2 = wantedCardList.get(i).toCSV();
+
+                fos2.write(cardCSV2.getBytes());
+                fos2.write("\r\n".getBytes());
+            }
+            fos2.close();
+        }
+        catch (Exception e) {
+            Log.e("Exception", e.getMessage());
+        }
+
     }
 
     public void addItem(View view) {
@@ -164,4 +218,37 @@ public class ListActivity extends FragmentActivity {
         adapter.notifyDataSetChanged();
     }
 
+    public void deleteCard(View view){
+        ListView listView = (ListView)findViewById(R.id.listView);
+        final int position = listView.getPositionForView((View) view.getParent());
+        cardList.remove(position);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void addItem2(View view) {
+        EditText editText = (EditText)findViewById(R.id.editText2);
+        Card card = new Card(editText.getText().toString());
+        wantedCardList.add(card);
+        adapter2.notifyDataSetChanged();
+        Log.d("BuildingListView", wantedCardList.toString());
+    }
+
+    private void showListEntryDialog2(Card card) {
+        FragmentManager fm = getSupportFragmentManager();
+        WantedListEntryFragment listEntryDialog = new WantedListEntryFragment();
+        listEntryDialog.card = card;
+        listEntryDialog.show(fm, "fragment_wanted_list_entry");
+    }
+
+    public void clearList2(View view) {
+        wantedCardList.clear();
+        adapter2.notifyDataSetChanged();
+    }
+
+    public void deleteCard2(View view){
+        ListView listView = (ListView)findViewById(R.id.listView2);
+        final int position = listView.getPositionForView((View) view.getParent());
+        wantedCardList.remove(position);
+        adapter2.notifyDataSetChanged();
+    }
 }
