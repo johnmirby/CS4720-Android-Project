@@ -1,9 +1,11 @@
 package com.virginia.cs.cs4720androidproject;
 
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.location.Location;
@@ -23,6 +25,7 @@ import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -92,6 +95,7 @@ public class MainActivity extends FragmentActivity {
                     Double markerLongitude = Double.parseDouble(line.split(",")[3]);
                     marker.position(new LatLng(markerLatitude, markerLongitude))
                             .title(markerTitle).snippet(markerSnippet);
+                    marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.trade_icon));
                     markerList.add(marker);
                     for (int i = 0; i < markerList.size(); i++) {
                         map.addMarker(markerList.get(i));
@@ -203,10 +207,15 @@ public class MainActivity extends FragmentActivity {
     }
 
     public void viewTrades(View view){
-        FragmentManager fm = getFragmentManager();
-        TradesDialog tradesDialog = new TradesDialog();
-        tradesDialog.trades = markerList;
-        tradesDialog.show(fm, "fragment_trades_dialog");
+        if (markerList.size() > 0) {
+            FragmentManager fm = getFragmentManager();
+            TradesDialog tradesDialog = new TradesDialog();
+            tradesDialog.trades = markerList;
+            tradesDialog.show(fm, "fragment_trades_dialog");
+        }
+        else {
+            Toast.makeText(this, "You don't currently have any trades", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void addCard(View view) {
@@ -218,6 +227,20 @@ public class MainActivity extends FragmentActivity {
         startActivity(intent);
     }
 
+    public void openAbout(View view) {
+        AlertDialog.Builder adb = new AlertDialog.Builder(this);
+        adb.setTitle("About Mobile Trade Binder")
+                .setMessage(getString(R.string.welcome_message))
+                .setNegativeButton("Close",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.dismiss();
+                            }
+                        }
+                )
+                .show();
+    }
+
     public void addTradeMarker(View view){
         map = ((com.google.android.gms.maps.MapFragment) getFragmentManager().findFragmentById(R.id.Google_Map)).getMap();
         String title = ((EditText)this.findViewById(R.id.editText2)).getText().toString();
@@ -225,6 +248,7 @@ public class MainActivity extends FragmentActivity {
         LatLng pos = gpsService.getCurrentLocation();
         if (pos != null){
             MarkerOptions markerOptions = new MarkerOptions().position(pos).title(title).snippet(description);
+            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.trade_icon));
             map.addMarker(markerOptions);
             CameraPosition camPos = new CameraPosition.Builder()
                     .target(pos)

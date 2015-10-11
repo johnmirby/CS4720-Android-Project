@@ -286,6 +286,9 @@
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
+    <!-- From: file:/home/john/AndroidStudioProjects/CS4720AndroidProject/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="about_button">About</string>
     <!-- From: file:/home/john/AndroidStudioProjects/CS4720AndroidProject/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.8.0/res/values/admob_strings.xml -->
     <eat-comment/>
     <string name="accept">Accept</string>
@@ -405,6 +408,11 @@
     <!-- From: file:/home/john/AndroidStudioProjects/CS4720AndroidProject/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="wanted_cards_title">Wanted Cards</string>
+    <string name="welcome_message">Welcome to Mobile Trade Binder! Add cards to your trade binder
+        by clicking the Add Card and All Cards buttons. You can keep track of cards you are
+        looking for and add pictures of cards you have for trade. You can also keep track of your
+        trades using the Add Trade and All Trades buttons. Trades will show up in the map
+        view to show you where your scheduled trades are.</string>
     <!-- From: file:/home/john/AndroidStudioProjects/CS4720AndroidProject/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/res/values/values.xml -->
     <eat-comment/>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
