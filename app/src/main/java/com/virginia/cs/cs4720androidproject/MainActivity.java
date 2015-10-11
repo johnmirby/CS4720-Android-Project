@@ -37,14 +37,14 @@ import java.util.ArrayList;
 public class MainActivity extends FragmentActivity {
     public final static String EXTRA_MESSAGE = "com.virginia.cs.cs4720androidproject.MESSAGE";
 
-    //String MARKERFILE = "Marker_File";
+    String MARKERFILE = "Marker_File";
 
     public ArrayList<MarkerOptions> markerList = new ArrayList<>();
 
-    //private GPSService gpsService;
-    //boolean mBounded;
+    private GPSService gpsService;
+    boolean mBounded;
 
-    //GoogleMap map;
+    GoogleMap map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,7 @@ public class MainActivity extends FragmentActivity {
 
         transaction.commit();
 
-        /*map = ((com.google.android.gms.maps.MapFragment) getFragmentManager().findFragmentById(R.id.Google_Map)).getMap();
+        map = ((com.google.android.gms.maps.MapFragment) getFragmentManager().findFragmentById(R.id.Google_Map)).getMap();
         map.setMyLocationEnabled(true);
 
         if (savedInstanceState != null) {
@@ -102,10 +102,10 @@ public class MainActivity extends FragmentActivity {
             } catch (Exception e) {
                 Log.e("Cannot Read Marker File", e.getMessage());
             }
-        }*/
+        }
     }
 
-    /*@Override
+    @Override
     protected void onStart() {
         super.onStart();
         Intent mIntent = new Intent(this, GPSService.class);
@@ -150,7 +150,7 @@ public class MainActivity extends FragmentActivity {
             CameraUpdate camUpd3 = CameraUpdateFactory.newCameraPosition(camPos);
             map.animateCamera(camUpd3);
         }
-    }*/
+    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -218,7 +218,7 @@ public class MainActivity extends FragmentActivity {
         startActivity(intent);
     }
 
-    /*public void addTradeMarker(View view){
+    public void addTradeMarker(View view){
         map = ((com.google.android.gms.maps.MapFragment) getFragmentManager().findFragmentById(R.id.Google_Map)).getMap();
         String title = ((EditText)this.findViewById(R.id.editText2)).getText().toString();
         String description = ((EditText)this.findViewById(R.id.editText4)).getText().toString();
@@ -250,6 +250,6 @@ public class MainActivity extends FragmentActivity {
         public void onServiceDisconnected(ComponentName className) {
             gpsService = null;
         }
-    };*/
+    };
 
 }

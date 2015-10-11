@@ -94,7 +94,6 @@ public class ListActivity extends FragmentActivity {
                 card.setExpansion(line2.split(",")[1]);
                 card.setLanguage(line2.split(",")[2]);
                 card.setConditionIndex(Integer.parseInt(line2.split(",")[3]));
-                card.setImageFileName(line2.split(",")[4]);
                 wantedCardList.add(card);
                 adapter2.notifyDataSetChanged();
                 Log.d("BuildingListView", wantedCardList.toString());
