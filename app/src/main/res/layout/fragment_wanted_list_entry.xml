@@ -65,7 +65,6 @@
         android:layout_height="wrap_content"
         android:text="@string/delete_card_button"
         android:id="@+id/deleteCardButton"
-        android:onClick="deleteCard2"
         android:layout_below="@+id/fragmentSpinner"
         android:layout_alignRight="@+id/fragmentEditText1"
         android:layout_alignEnd="@+id/fragmentEditText1" />

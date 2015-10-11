@@ -74,7 +74,9 @@ public class ListActivity extends FragmentActivity {
                 card.setExpansion(line.split(",")[1]);
                 card.setLanguage(line.split(",")[2]);
                 card.setConditionIndex(Integer.parseInt(line.split(",")[3]));
-                card.setImageFileName(line.split(",")[4]);
+                if (line.split(",").length == 5) {
+                    card.setImageFileName(line.split(",")[4]);
+                }
                 cardList.add(card);
                 adapter.notifyDataSetChanged();
                 Log.d("BuildingListView", cardList.toString());
@@ -126,9 +128,19 @@ public class ListActivity extends FragmentActivity {
 
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        if (message != null){
+        if (message != null && message.split(",")[0] != "Delete"){
             cardList.add(new Card(message));
             adapter.notifyDataSetChanged();
+        }
+        else if (message != null && message.split(",")[0] == "Delete"){
+            String cardString = message.split(",")[1];
+            for (int i = 0; i < cardList.size(); i++) {
+                Card card = cardList.get(i);
+                if (card.toString() == cardString) {
+                    cardList.remove(card);
+                    adapter.notifyDataSetChanged();
+                }
+            }
         }
         intent.removeExtra(MainActivity.EXTRA_MESSAGE);
     }
@@ -209,18 +221,13 @@ public class ListActivity extends FragmentActivity {
         FragmentManager fm = getSupportFragmentManager();
         ListEntryFragment listEntryDialog = new ListEntryFragment();
         listEntryDialog.card = card;
+        listEntryDialog.cardList = cardList;
+        listEntryDialog.adapter = adapter;
         listEntryDialog.show(fm, "fragment_list_entry");
     }
 
     public void clearList(View view) {
         cardList.clear();
-        adapter.notifyDataSetChanged();
-    }
-
-    public void deleteCard(View view){
-        ListView listView = (ListView)findViewById(R.id.listView);
-        final int position = listView.getPositionForView((View) view.getParent());
-        cardList.remove(position);
         adapter.notifyDataSetChanged();
     }
 
@@ -236,6 +243,8 @@ public class ListActivity extends FragmentActivity {
         FragmentManager fm = getSupportFragmentManager();
         WantedListEntryFragment listEntryDialog = new WantedListEntryFragment();
         listEntryDialog.card = card;
+        listEntryDialog.cardList = wantedCardList;
+        listEntryDialog.adapter = adapter2;
         listEntryDialog.show(fm, "fragment_wanted_list_entry");
     }
 
@@ -244,10 +253,4 @@ public class ListActivity extends FragmentActivity {
         adapter2.notifyDataSetChanged();
     }
 
-    public void deleteCard2(View view){
-        ListView listView = (ListView)findViewById(R.id.listView2);
-        final int position = listView.getPositionForView((View) view.getParent());
-        wantedCardList.remove(position);
-        adapter2.notifyDataSetChanged();
-    }
 }

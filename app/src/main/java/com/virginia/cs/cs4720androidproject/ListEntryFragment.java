@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -48,6 +50,10 @@ public class ListEntryFragment extends DialogFragment {
     String mCurrentPhotoPath;
 
     public Card card;
+    public ArrayList<Card> cardList;
+    public ArrayAdapter<Card> adapter;
+
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -126,6 +132,12 @@ public class ListEntryFragment extends DialogFragment {
                 card.setImageFileName(mCurrentPhotoPath);
             }
         });
+        Button b2 = (Button) view.findViewById(R.id.deleteCardButton);
+        b2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                deleteCardFrag();
+            }
+        });
         getDialog().setTitle(card.getName());
         return view;
     }
@@ -189,6 +201,12 @@ public class ListEntryFragment extends DialogFragment {
                     Uri.fromFile(photoFile));
             startActivityForResult(takePictureIntent, 1337);
         }
+    }
+
+    public void deleteCardFrag(){
+        cardList.remove(card);
+        adapter.notifyDataSetChanged();
+        this.dismiss();
     }
 
 }

@@ -89,7 +89,6 @@
         android:layout_height="wrap_content"
         android:text="@string/delete_card_button"
         android:id="@+id/deleteCardButton"
-        android:onClick="deleteCard"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/openCameraButton"
         android:layout_toEndOf="@+id/openCameraButton"
