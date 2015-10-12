@@ -3,7 +3,6 @@
     android:layout_height="match_parent"
     tools:context="com.virginia.cs.cs4720androidproject.MyCardsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView android:layout_width="match_parent" android:layout_height="30dp"
         android:text="@string/my_cards_fragment_title"
         android:id="@+id/TextView"
@@ -14,6 +13,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText3"
         android:hint="@string/add_item_text"
+        android:freezesText="true"
         android:layout_below="@+id/about_button"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

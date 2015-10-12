@@ -30,7 +30,8 @@
         by clicking the Add Card and All Cards buttons. You can keep track of cards you are
         looking for and add pictures of cards you have for trade. You can also keep track of your
         trades using the Add Trade and All Trades buttons. Trades will show up in the map
-        view to show you where your scheduled trades are.</string>
+        view to show you where your scheduled trades are. You can also use the trade feature to keep
+        a record of the trades you made and where they happened!</string>
 
     <string-array name="condition_array">
         <item>NM</item>
@@ -40,8 +41,5 @@
         <item>D</item>
     </string-array>
     <string name="title_activity_maps">Map</string>
-
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

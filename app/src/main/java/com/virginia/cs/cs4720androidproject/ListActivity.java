@@ -128,19 +128,9 @@ public class ListActivity extends FragmentActivity {
 
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        if (message != null && message.split(",")[0] != "Delete"){
+        if (message != null){
             cardList.add(new Card(message));
             adapter.notifyDataSetChanged();
-        }
-        else if (message != null && message.split(",")[0] == "Delete"){
-            String cardString = message.split(",")[1];
-            for (int i = 0; i < cardList.size(); i++) {
-                Card card = cardList.get(i);
-                if (card.toString() == cardString) {
-                    cardList.remove(card);
-                    adapter.notifyDataSetChanged();
-                }
-            }
         }
         intent.removeExtra(MainActivity.EXTRA_MESSAGE);
     }

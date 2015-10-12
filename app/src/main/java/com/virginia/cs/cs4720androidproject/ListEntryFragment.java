@@ -133,11 +133,13 @@ public class ListEntryFragment extends DialogFragment {
             }
         });
         Button b2 = (Button) view.findViewById(R.id.deleteCardButton);
-        b2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                deleteCardFrag();
-            }
-        });
+        if (b2 != null) {
+            b2.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    deleteCardFrag();
+                }
+            });
+        }
         getDialog().setTitle(card.getName());
         return view;
     }

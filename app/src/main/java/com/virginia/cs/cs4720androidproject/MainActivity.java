@@ -14,6 +14,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.SyncStateContract;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -142,24 +143,9 @@ public class MainActivity extends FragmentActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        Location mapLocation = map.getMyLocation();
-        if (mapLocation != null) {
-            LatLng pos = new LatLng(mapLocation.getLatitude(), mapLocation.getLongitude());
-            CameraPosition camPos = new CameraPosition.Builder()
-                    .target(pos)
-                    .zoom(18)
-                    .build();
-            CameraUpdate camUpd3 = CameraUpdateFactory.newCameraPosition(camPos);
-            map.animateCamera(camUpd3);
-        }
-    }
-
-    @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList("markers", markerList);
         super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList("markers", markerList);
     }
 
     @Override
@@ -221,8 +207,9 @@ public class MainActivity extends FragmentActivity {
     public void addCard(View view) {
         Intent intent = new Intent(this, ListActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        EditText editText = (EditText) findViewById(R.id.editText3);
-        String message = editText.getText().toString();
+        EditText cardText = (EditText)findViewById(R.id.editText3);
+        String message = cardText.getText().toString();
+        cardText.setText("");
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
@@ -243,8 +230,10 @@ public class MainActivity extends FragmentActivity {
 
     public void addTradeMarker(View view){
         map = ((com.google.android.gms.maps.MapFragment) getFragmentManager().findFragmentById(R.id.Google_Map)).getMap();
-        String title = ((EditText)this.findViewById(R.id.editText2)).getText().toString();
-        String description = ((EditText)this.findViewById(R.id.editText4)).getText().toString();
+        EditText tradeTextTitle = (EditText)findViewById(R.id.editText2);
+        EditText tradeTextDescription = (EditText)findViewById(R.id.editText4);
+        String title = tradeTextTitle.getText().toString();
+        String description = tradeTextDescription.getText().toString();
         LatLng pos = gpsService.getCurrentLocation();
         if (pos != null){
             MarkerOptions markerOptions = new MarkerOptions().position(pos).title(title).snippet(description);
@@ -261,6 +250,8 @@ public class MainActivity extends FragmentActivity {
         else {
             Toast.makeText(this, "Please wait for the current location to be retrieved.", Toast.LENGTH_SHORT).show();
         }
+        tradeTextDescription.setText("");
+        tradeTextTitle.setText("");
     }
 
     private ServiceConnection mConnection = new ServiceConnection() {
